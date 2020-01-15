@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--模仿postman编写一个简易的http接口测试工具-->
+<head>
+    <meta charset="UTF-8">
+    <title>自定义HttpClient</title>
+    <link rel='stylesheet prefetch' href='https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="httpClientStyle.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h3 class="page-header">接口测试工具</h3>
+        <div>
+            <label>接口地址:</label>
+            <input type="text" class="form-control" id="url_input"
+                   value="http://localhost/" onchange="changetext()">
+            <!--<label>接口类型:</label><input type="text" class="form-control" id="type_input" value='POST'>-->
+            <div>
+                <label>接口类型:</label>
+                <select id="type_select" class="selected form-select-button" style="height: 25px">
+                    <option value="GET" selected>GET</option>
+                    <option value="POST">POST</option>
+                </select>
+            </div>
+            <label>消息头:</label><input type="text" class="form-control" id="header_input"  placeholder='{"A":"XX","B":"XX"}'' title='{"A":"XX","B":"XX"}' onchange="changetext()">
+
+            <label>消息体:</label>
+            <div>
+                <input name="bodyType" type="radio" value="form" id="formtype" checked>&nbspForm&emsp;
+                <input name="bodyType" type="radio" value="json" id="jsontype">&nbspJSON
+                <input name="bodyType" type="radio" value="xml" id="xmltype">&nbspXML
+            </div>
+            <textarea rows="3" cols="20"  class="form-control" id="body_input" onchange="changetext()"></textarea>
+
+            <!-- <input type="text" class="form-control" id="body_input" value='{"id":"1"}'> -->
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary" title="发送消息" onclick="send()">发送</button>
+            <button type="reset" class="btn btn-primary" title="刷新页面" onclick="location.reload()">刷新</button>
+            <button type="reset" class="btn btn-primary" title="清空查询结果" onclick="clearShowArea();cleartext()">清空</button>
+            <button type="reset" class="btn btn-primary" title="跳转首页" onclick="location.href='/'">首页</button>
+        </div>
+
+        <div>
+            <label>返回结果:</label>
+            <div class="well">
+                <p id="showArea"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="httpclient.js"></script>
+
+</body>
+</html>
